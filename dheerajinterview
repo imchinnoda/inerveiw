@@ -1,1 +1,125 @@
-in
+#include <iostream>
+#include <string>
+
+int main() {
+    // Input sentence
+    std::string sentence = "I am Indian";
+    
+    // Array to store words (assuming we know max number of words here)
+    std::string words[10]; // You can change the size as per your need
+    int wordCount = 0;
+    
+    // Temporary string to hold each word
+    std::string currentWord = "";
+    
+    // Split the sentence into words
+    for (char ch : sentence) {
+        if (ch == ' ') {
+            if (currentWord != "") {
+                words[wordCount++] = currentWord;
+                currentWord = "";  // Reset current word
+            }
+        } else {
+            currentWord += ch;  // Add character to current word
+        }
+    }
+    
+    // Add the last word (since it doesn't end with space)
+    if (currentWord != "") {
+        words[wordCount++] = currentWord;
+    }
+    
+    // Output the words in reverse order
+    for (int i = wordCount - 1; i >= 0; i--) {
+        std::cout << words[i] << " ";
+    }
+    
+    return 0;
+}
+
+
+
+
+with predefined functions
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    // Input string
+    std::string sentence = "I am Indian";
+    
+    // Create a stringstream from the sentence
+    std::stringstream ss(sentence);
+    std::string word;
+    
+    // Vector to hold words
+    std::vector<std::string> words;
+    
+    // Extract words from the sentence and store them in the vector
+    while (ss >> word) {
+        words.push_back(word);
+    }
+    
+    // Reverse the order of words
+    std::reverse(words.begin(), words.end());
+    
+    // Output the reversed sentence
+    for (const auto& w : words) {
+        std::cout << w << " ";
+    }
+    
+    return 0;
+}
+//with forloop
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string input = "i am indian"; // The given string
+    vector<string> words;
+    string word;
+    int length = input.length();
+    
+    // Manually split the string into words
+    for (int i = 0; i <= length; ++i) {
+        if (i == length || input[i] == ' ') {
+            if (!word.empty()) {
+                words.push_back(word); // Store each word in the vector
+                word.clear(); // Clear the word for next word
+            }
+        } else {
+            word += input[i]; // Append characters to the current word
+        }
+    }
+
+    // Manually reverse the order of words in the vector
+    int start = 0, end = words.size() - 1;
+    while (start < end) {
+        string temp = words[start];
+        words[start] = words[end];
+        words[end] = temp;
+        start++;
+        end--;
+    }
+
+    // Join the words back into a string
+    string result;
+    for (int i = 0; i < words.size(); ++i) {
+        result += words[i];
+        if (i < words.size() - 1) {
+            result += " "; // Add space between words
+        }
+    }
+
+    // Output the result
+    cout << result << endl;
+
+    return 0;
+}
+
+ +
